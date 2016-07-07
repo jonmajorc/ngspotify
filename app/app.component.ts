@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from './components/navbar-top.component';
+import { NavbarComponent } from './components/navbar-top/navbar-top.component';
 
 @Component({
     moduleId:module.id,
