@@ -1,1 +1,7 @@
-SEARCH COMPONENT!
+<h1>Need Music?</h1>
+<p class="lead">Use the ngSpotify app to search and preview tracks!</p>
+<form action="">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search Music..." [(ngModel)]="searchStr" (keyup.enter)="searchMusic()">
+    </div>
+</form>
