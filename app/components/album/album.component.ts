@@ -4,43 +4,40 @@ import { SpotifyService } from '../../services/spotify.service';
 import { Artist } from '../../Artist';
 import { Album } from '../../Album';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
 
 @Component({
     moduleId:module.id,
-    selector: 'artist',
-    templateUrl: 'artist.component.html',
+    selector: 'album',
+    templateUrl: 'album.component.html',
 })
-export class ArtistComponent implements OnInit, OnDestroy{ 
+export class AlbumComponent implements OnInit, OnDestroy{ 
     id:string;
-    artist:Artist[];
-    albums:any;
+    album:Album[];
+    tracks:any;
+    artist:any;
     paramsSub:any;
     
     constructor(
         private _spotifyService:SpotifyService,
-        private _activatedRoute:ActivatedRoute,
-        private _route:Router
+        private _activatedRoute:ActivatedRoute
         ){}
 
     ngOnInit(){
         this.paramsSub = this._activatedRoute.params.subscribe(params => {
             this.id = params['id'];
-            this._spotifyService.getArtist(this.id).subscribe(artist => {
-                this.artist = artist;
-                console.log(artist);
-            });
-            this._spotifyService.getAlbums(this.id).subscribe(albums => {
-                this.albums = albums.items;
-                console.log(albums);
-            });
+            
+            this._spotifyService.getAlbum(this.id).subscribe(album => {
+                this.album = album;
+                this.artist = album.artists;
+                console.log(this.album)
+            })
+
+            this._spotifyService.getTracks(this.id).subscribe(tracks => {
+                this.tracks = tracks.items
+                console.log(this.tracks)
+            })
         })
         console.log('ARTIST COMPONENT INIT')
-    }
-
-    onSelect(album:any){
-        this._route.navigate(['/album',album.id])       
-        console.log(album);
     }
     
     ngOnDestroy(){
