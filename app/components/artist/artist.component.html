@@ -12,22 +12,42 @@
         </p>
     </header>
 
-    <hr>
-
-    <div class="artist-albums">
-        <div class="row">
-            <div *ngFor="let album of albums">
-                <div class="col-md-3">
-                    <div class="well album">
-                        <div class="album-img-container" *ngIf="album.images.length > 0">
-                            <img class="album-thumbnail img-thumbnail" src="{{album.images[0].url}}" alt="{{album.name}}">
+    <tabset>
+        <tab heading='Artist Albums'>
+            <div class="artist-albums">
+                <div class="row">
+                    <div *ngFor="let album of albums">
+                        <div class="col-md-3">
+                            <div class="well album">
+                                <div class="album-img-container" *ngIf="album.images.length > 0">
+                                    <img class="album-thumbnail img-thumbnail" src="{{album.images[0].url}}" alt="{{album.name}}">
+                                </div>
+                                <h4>{{album.name}}</h4>
+                                <a (click)="onSelectAlbum(album)" class="btn btn-default btn-block">Album Details</a>
+                            </div>
                         </div>
-                        <h4>{{album.name}}</h4>
-                        <a (click)="onSelect(album)" class="btn btn-default btn-block">Album Details</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </tab>
+        <tab heading='Suggested Artists'>
+            <div class="related-artists">
+                <div class="row">
+                    <div *ngFor="let artist of relatedArtists">
+                        <div class="col-md-3">
+                            <div class="well r-artists">
+                                <!--<div class="artist-img-container" *ngIf="artist.images.length > 0">
+                                    <img class="artists-thumbnail img-thumbnail" src="{{artist.images[0].url}}" alt="{{artist.name}}">
+                                </div>-->
+                                <h3>{{artist.name}}</h3>
+                                <a (click)="onSelectRelArtist(artist)" class="btn btn-default btn-block">Album Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+        </tab>
+    </tabset>
 
 </div>

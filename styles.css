@@ -1,3 +1,9 @@
+.tab-pane{
+    padding-top: 10px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+    background-color: #74868e;
+}
 .main{
     border-bottom:#333 1px solid;
     padding: 30px 0;
@@ -28,8 +34,15 @@
     overflow: auto;
     min-height: 400px;
 }
+.related-artist .well{
+    margin-bottom: 20px;
+    overflow: auto;
+    min-height: 400px;
+}
 
-.album{
+
+.album, .r-artists{
+    height:200px;
     text-align: center;
     background: #333;
     padding:10px 20px;

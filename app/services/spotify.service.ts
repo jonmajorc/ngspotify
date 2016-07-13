@@ -10,7 +10,8 @@ export class SpotifyService{
     private albumsUrl:string;
     private albumUrl:string;
     private trackUrl:string;
-    
+    private relatedArtistsUrl:string;
+
     constructor(private _http:Http){
 
     }
@@ -52,6 +53,14 @@ export class SpotifyService{
         //TODO: (Me) Learn more about .map from observables rxjs
         //TODO: (Me) http://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html
         return this._http.get(this.albumUrl)
+            .map(res=>res.json());
+
+    }
+    getRelatedArtists(id:string){
+        this.relatedArtistsUrl = 'https://api.spotify.com/v1/artists/' + id + '/related-artists';
+        //TODO: (Me) Learn more about .map from observables rxjs
+        //TODO: (Me) http://blog.thoughtram.io/angular/2016/01/06/taking-advantage-of-observables-in-angular2.html
+        return this._http.get(this.relatedArtistsUrl)
             .map(res=>res.json());
 
     }
